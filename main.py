@@ -86,7 +86,7 @@ class CashCalculator(Calculator):
         elif currency_type == 'rub':
             cash_remained == 1.00
             # строка 90 не требуется, по сути она бесполезна для подобного кейса лучше использовать функцию float()
-            currency_type = 'руб'
+            currency_type = 'руб' # ниже желательно оставить пустую строку
         if cash_remained > 0:
             return (
                 f'На сегодня осталось {round(cash_remained, 2)} '
@@ -105,18 +105,21 @@ class CashCalculator(Calculator):
 
     def get_week_stats(self):
         super().get_week_stats()
+        # во-первых отсутствует return у метода, когда в методе предка он есть
+        # во-вторых этот метод в принципе не нужен поскольку он уже имеется у родительского класса
+        # а дочерний класс может спокойно его использовать
 
 
 # создадим калькулятор денег с дневным лимитом 1000
 cash_calculator = CashCalculator(1000)
-calories_calculator = CaloriesCalculator(400)
+calories_calculator = CaloriesCalculator(2000)
 # дата в параметрах не указана,
 # так что по умолчанию к записи должна автоматически добавиться сегодняшняя дата
 cash_calculator.add_record(Record(amount=145, comment="кофе"))
 calories_calculator.add_record(Record(amount=70, comment="кофе"))
 # и к этой записи тоже дата должна добавиться автоматически
 cash_calculator.add_record(Record(amount=300.25, comment="Серёге за обед"))
-calories_calculator.add_record(Record(amount=200, comment="обед с Серёгай"))
+calories_calculator.add_record(Record(amount=600, comment="обед с Серёгай"))
 # а тут пользователь указал дату, сохраняем её
 cash_calculator.add_record(Record(amount=3000, comment="бар в Танин др", date="08.11.2019"))
 cash_calculator.add_record(Record(amount=1000, comment="бар в Танин др", date="08.11.2019"))
