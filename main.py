@@ -17,27 +17,24 @@ class Calculator:
         self.records = []
 
     def add_record(self, record):
-        # Нужно прописать документацию для этого метода, чтобы было удобнее работать.
+        # Нужно прописать документацию для этого метода и всех остальных методов во всех классах этого модуля
+        # чтобы было удобнее работать.
         # Удобнее как другим разработчикам, так и тебе.
+        # Для лучшего понимания изучи и делай как описано: https://peps.python.org/pep-0257/
         # Для создания шаблона документации вставь """ в следующей строке и нажми Enter.
         self.records.append(record)
 
     def get_today_stats(self):
-        # Нужно прописать документацию для этого метода, чтобы было удобнее работать.
-        # Удобнее как другим разработчикам, так и тебе.
-        # Для создания шаблона документации вставь """ в следующей строке и нажми Enter.
         today_stats = 0
         for Record in self.records:
             # в наименовании переменной Record лучше не использовать uppercase, лучше только lowercase
             # чтобы не путать например с названием класса
+            # Для лучшего понимания изучи https://pythonchik.ru/osnovy/imenovanie-v-python
             if Record.date == dt.datetime.now().date():
                 today_stats = today_stats + Record.amount
         return today_stats
 
     def get_week_stats(self):
-        # Нужно прописать документацию для этого метода, чтобы было удобнее работать.
-        # Удобнее как другим разработчикам, так и тебе.
-        # Для создания шаблона документации вставь """ в следующей строке и нажми Enter.
         week_stats = 0
         today = dt.datetime.now().date()
         for record in self.records:
@@ -52,9 +49,10 @@ class Calculator:
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self):  # Получает остаток калорий на сегодня
-        # Нужно прописать документацию для этого метода, чтобы было удобнее работать.
-        # Удобнее как другим разработчикам, так и тебе.
-        # Для создания шаблона документации вставь """ в следующей строке и нажми Enter.
+        # вместо комментария выше должна быть документация
+        # но при небходимости написания комментария лучше использовать формат
+        # который описа здесь:
+        # https://softwareengineering.stackexchange.com/questions/315792/best-way-of-writing-comments-in-code
         x = self.limit - self.get_today_stats()
         if x > 0:
             return f'Сегодня можно съесть что-нибудь' \
@@ -71,13 +69,12 @@ class CashCalculator(Calculator):
     EURO_RATE = float(70)  # Курс Евро.
     # Переменные нельзя называть в uppercase + их можно было объявить внутри метода get_today_cash_remained
     # поскольку они используются только там, и не пришлось бы присваивать их на входных параметрах
+    # Для лучшего понимания изучи https://pythonchik.ru/osnovy/imenovanie-v-python
 
     def get_today_cash_remained(self, currency,
                                 USD_RATE=USD_RATE, EURO_RATE=EURO_RATE):
         # Аргументы функции тоже должны быть в lowercase
-        # Нужно прописать документацию для этого метода, чтобы было удобнее работать.
-        # Удобнее как другим разработчикам, так и тебе.
-        # Для создания шаблона документации вставь """ в следующей строке и нажми Enter.
+        # Для лучшего понимания изучи https://pythonchik.ru/osnovy/imenovanie-v-python
         currency_type = currency
         cash_remained = self.limit - self.get_today_stats()
         if currency == 'usd':
@@ -107,9 +104,6 @@ class CashCalculator(Calculator):
         # например присвоение этих строк в переменные и объединять эти переменные в return
 
     def get_week_stats(self):
-        # Нужно прописать документацию для этого метода, чтобы было удобнее работать.
-        # Удобнее как другим разработчикам, так и тебе.
-        # Для создания шаблона документации вставь """ в следующей строке и нажми Enter.
         super().get_week_stats()
 
 
